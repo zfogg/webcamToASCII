@@ -1,1 +1,1 @@
-void handleInput(int ch);
+void handleInput();

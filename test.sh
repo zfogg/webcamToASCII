@@ -1,8 +1,5 @@
 #!/bin/bash
 
 
-for i in `ls ./imgs/*.jpg`; do
-    #sleep $((1/30));
-    jp2a "$i";
-    echo -en '\t';
-done
+~/code/c/jp2a/src/jp2a --term-fit --colors --fill `ls ./imgs/*.jpg`
+echo -en '\t';

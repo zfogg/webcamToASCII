@@ -7,6 +7,11 @@
 WINDOW * win;
 
 int main() {
+    handleInput();
+    return 1;
+}
+
+void handleInput() {
     initscr();
     noecho();
     cbreak();
@@ -15,27 +20,22 @@ int main() {
 
     int y, x;
     getmaxyx(stdscr, y, x);
-    win = newwin(y, x, 0, 0);
+    //win = newwin(y, x, 0, 0);
 
     for (int ch; ; ch = getch()) {
         if (ch == ERR) { // No input :(.
             ;
         } else {         // Input from stdin :).
-            handleInput(ch);
+            if (ch == 9) { // ch == '\t'
+                //wclear(win);
+                move(0, 0);
+            } else {
+                addch(ch);
+            }
+            refresh();
         }
     }
 
     endwin();
-    return 1;
-}
-
-void handleInput(int ch) {
-    if (ch == 9) { // ch == '\t'
-        //wclear(win);
-        wmove(win, 0, 0);
-    } else {
-        waddch(win, ch);
-    }
-    wrefresh(win);
 }
 
